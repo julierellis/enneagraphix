@@ -1,0 +1,1 @@
+const babyData = [{name: "Julie", age: 66},{name: "Raya", age: 12}]

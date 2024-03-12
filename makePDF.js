@@ -1,0 +1,16 @@
+const fs = require('fs');
+const PDFDocument = require('pdfkit');
+const doc = new PDFDocument({layout : 'landscape'});
+// console.log(process.argv);
+doc.pipe(fs.createWriteStream('file4.pdf')); // write to PDF
+// doc.pipe(res);                            // HTTP response
+
+// add stuff to PDF here using methods described below...
+doc.path('M 0,20 L 100,160 Q 130,200 150,120 C 190,-40 200,200 300,150 L 400,90')
+   .stroke()                                  // stroke the path
+
+doc.text(`Hello ${process.argv[2]}!`, 400, 90,{baseline: 'bottom'})
+doc.text('This is where the next image would be')
+doc.image('images/Key.png', {width: 200})
+// finalize the PDF and end the stream
+doc.end();
